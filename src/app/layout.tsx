@@ -1,19 +1,32 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import { person, siteUrl } from '@/content/site'
 import { themeScript } from '@/components/ui/theme-toggle'
 import './globals.css'
 
-const inter = Inter({
-  subsets: ['latin'],
+/**
+ * Fonts are vendored (Inter and JetBrains Mono, latin variable subsets, OFL).
+ * Self-hosting keeps the build hermetic — no Google Fonts fetch at build time,
+ * and no third-party request from the visitor's browser.
+ */
+const inter = localFont({
+  src: './fonts/inter-variable.woff2',
+  weight: '100 900',
+  style: 'normal',
   display: 'swap',
   variable: '--font-sans',
+  fallback: ['ui-sans-serif', 'system-ui', 'Segoe UI', 'Helvetica Neue', 'Arial', 'sans-serif'],
+  preload: true,
 })
 
-const mono = JetBrains_Mono({
-  subsets: ['latin'],
+const mono = localFont({
+  src: './fonts/jetbrains-mono-variable.woff2',
+  weight: '100 800',
+  style: 'normal',
   display: 'swap',
   variable: '--font-mono',
+  fallback: ['ui-monospace', 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'monospace'],
+  preload: true,
 })
 
 const title = `${person.name} | Software Engineer | Full Stack, Backend & AI Automation`
