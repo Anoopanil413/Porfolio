@@ -10,3 +10,8 @@ npm-debug.log*
 .vercel
 next-env.d.ts
 tsconfig.tsbuildinfo
+
+# generated
+tsconfig.tsbuildinfo
+*.superseded
+anoop-portfolio.zip
